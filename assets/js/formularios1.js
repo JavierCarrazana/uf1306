@@ -48,11 +48,15 @@ function validarFormulario() {
     var valido = true;
     var expRegNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}$/;
     var expRegEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+    var expRegTlf = /^[6-9]{1}[0-9]{8}$/;
 
     // Objetos document HTML
-    var formulario = document.getElementById("form")
+    var formulario = document.getElementById("form");
     var nombre = document.getElementById("name");
     var email = document.getElementById("email");
+    var mensaje = document.getElementById("mensaje");
+    var edad = document.getElementById("edad");
+    var tlf = document.getElementById("tlf");
 
     // Validar con JavaScript que el campo “nombre” no esté vacío
 
@@ -82,6 +86,20 @@ function validarFormulario() {
         // y se pondrá el foco en el campo “email”
         email.focus();
         valido = false;
+    } else if (mensaje.lenght > 255) {
+        alert("El límite máximo del mensaje son 255 caracteres");
+        mensaje.focus();
+        valido = false;
+    } else if ((edad.value < 18) || (edad.value > 120)) {
+        alert("La edad debe estar comprendida entre 18 y 120");
+        mensaje.focus();
+        valido = false;
+    } else if (!expRegTlf.exec(tlf.value)) {
+        // Si no es válido mostrará el mensaje:
+        alert("Por favor verifica que el número de teléfono introducido es válido");
+        // y se pondrá el foco en el campo “email”
+        email.focus();
+        valido = false;
     }
     // Si todos los campos son válidos
     // se mostrará el mensaje “Formulario enviado”.
@@ -89,5 +107,4 @@ function validarFormulario() {
         alert("Formulario enviado");
         formulario.submit();
     }
-
 }

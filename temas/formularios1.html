@@ -62,16 +62,17 @@
 
         <form action="#" method="post" class="form" id="form">
           <fieldset>
-            <legend>Formulario de Contacto</legend>
+            <legend>Formulario de Contacto <br></legend>
             <ul>
+              <p>Los campos con (*) son obligatorios</p>
               <li>
-                <label for="name">Nombre:</label>
+                <label for="name">Nombre(*):</label>
                 <!-- pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" -->
                 <!-- title="Sólo se admiten letras del alfabeto español y espacios en blanco" -->
                 <input type="text" placeholder="Nombre"name="name" id="name" required/>
               </li>
               <li>
-                <label for="email">E-mail:</label>
+                <label for="email">E-mail(*):</label>
                 <input type="email" placeholder="Email" name="email" id="email" required/>
               </li>
               <label for="tlf">Teléfono</label>

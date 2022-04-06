@@ -54,6 +54,7 @@ function validarFormulario(enviar) {
     var edad = document.getElementById("edad");
     var email = document.getElementById("email");
     var mensaje = document.getElementById("mensaje");
+    var telefono = document.getElementById("tlf");
 
     // Resultado de la validación: por defecto, FALSE
     var validacion = false;
@@ -64,6 +65,8 @@ function validarFormulario(enviar) {
         //&& validarNumero( edad, 0, 120 )
         &&
         validarEmail(email)
+        &&
+        validarTelefono(telefono)
         //&& validarTextarea( mensaje, 3, 255 )
         &&
         confirm("¿Deseas enviar el formulario con estos datos?")
@@ -152,7 +155,11 @@ function mensajeError(error, elemento = "", min = 0, max = 300, id = "errores") 
             texto += "Verifica que el email introducido es válido"
             etiquetaInfo.innerHTML = texto;
             break;
-            
+        
+        case 4:
+            texto += "El formato de número de teléfono introducido no es válido"
+            etiquetaInfo.innerHTML = texto;    
+        break;
             // default:
     }
 
@@ -261,6 +268,25 @@ function validarEmail(elemento) {
             var resultadoExpRegular = expresionRegular.exec(elemento.value);
             if (!resultadoExpRegular) {
                 validacion = mensajeError(3, elemento);
+            }
+            break;
+
+    }
+    return validacion;
+}
+
+function validarTelefono(elemento) {
+
+    var expresionRegular = /^[6-9]{1}[0-9]{8}$/;
+    var validacion = validarObligatorio(elemento);
+
+    switch (validacion) {
+
+        case true:
+
+            var resultadoExpRegular = expresionRegular.exec(elemento.value);
+            if (!resultadoExpRegular) {
+                validacion = mensajeError(4, elemento);
             }
             break;
 

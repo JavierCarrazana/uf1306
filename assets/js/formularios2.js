@@ -61,14 +61,11 @@ function validarFormulario(enviar) {
 
     // Validamos cada uno de los apartados con llamadas a sus funciones correspondientes.
     if (
-        validarSoloTexto(nombre)
-        //&& validarNumero( edad, 0, 120 )
-        &&
-        validarEmail(email)
-        &&
-        validarTelefono(telefono)
-        //&& validarTextarea( mensaje, 3, 255 )
-        &&
+        validarSoloTexto(nombre) &&
+        validarNumero(edad, 18, 120) &&
+        validarEmail(email) &&
+        validarTelefono(telefono) &&
+        validarTextarea(mensaje, 3, 255) &&
         confirm("¿Deseas enviar el formulario con estos datos?")
     ) {
         // El código de error 0 Devuelve TRUE ( @return = true )
@@ -80,7 +77,7 @@ function validarFormulario(enviar) {
     else {
         // Se impide el evento asignado por defecto al input type="submit"
         // es decir, se impide el envío del formulario
-    
+
         enviar.preventDefault();
 
         // return false; // validacion sigue siendo FALSE
@@ -155,11 +152,16 @@ function mensajeError(error, elemento = "", min = 0, max = 300, id = "errores") 
             texto += "Verifica que el email introducido es válido"
             etiquetaInfo.innerHTML = texto;
             break;
-        
+
         case 4:
             texto += "El formato de número de teléfono introducido no es válido"
-            etiquetaInfo.innerHTML = texto;    
-        break;
+            etiquetaInfo.innerHTML = texto;
+            break;
+        case 5:
+            texto += "El número de caracteres introducidos no se encuentra entre los valores "
+            texto += min + " y " + max;
+            etiquetaInfo.innerHTML = texto;
+            break;
             // default:
     }
 
@@ -196,6 +198,18 @@ function validarObligatorio(elemento) {
     }
 
     // else { return true; }
+
+    return validacion;
+}
+
+function validarOpcional(elemento) {
+
+    if (!elemento.value.trim().length > 0) {
+        // El mensajeError(1) inserta un mensaje con la info del error en el DOM
+        // y retorna FALSE
+        var validacion = true
+        // return false;
+    } else validacion = mensajeError(4, elemento);
 
     return validacion;
 }
@@ -277,16 +291,53 @@ function validarEmail(elemento) {
 
 function validarTelefono(elemento) {
 
+    var opcional = true;
     var expresionRegular = /^[6-9]{1}[0-9]{8}$/;
+    // var validacion = validarOpcional(elemento);
+    var validacion = validarObligatorio(elemento);
+    switch (validacion) {
+
+        case true:
+
+            var resultadoExpRegular = expresionRegular.exec(elemento.value);
+            console.log("REGEX value:" + !resultadoExpRegular)
+            if (!resultadoExpRegular) {
+                validacion = mensajeError(4, elemento);
+            }
+            break;
+
+    }
+    return validacion;
+}
+
+function validarNumero(elemento, min, max) {
+
     var validacion = validarObligatorio(elemento);
 
     switch (validacion) {
 
         case true:
 
-            var resultadoExpRegular = expresionRegular.exec(elemento.value);
-            if (!resultadoExpRegular) {
-                validacion = mensajeError(4, elemento);
+            if (elemento.value < min || elemento.value > max) {
+                validacion = mensajeError(5, elemento, min, max);
+            }
+            break;
+
+    }
+    return validacion;
+}
+
+function validarTextarea(elemento, min, max) {
+
+    var validacion = validarObligatorio(elemento);
+    var texto = elemento.value;
+
+    switch (validacion) {
+
+        case true:
+
+            if (texto.length < min || texto.length > max) {
+                validacion = mensajeError(5, elemento, min, max);
             }
             break;
 

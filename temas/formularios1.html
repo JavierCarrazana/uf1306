@@ -14,7 +14,10 @@
 
   <title>UF1306 | Validación de Formularios</title>
   <!-- <script src="../assets/js/formularios1.js"></script> -->
-  <script src="../assets/js/formularios2.js"></script>
+  <!-- <script src="../assets/js/formularios2.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <script src="../assets/js/formularios3.js"></script>
 </head>
 
 <body>
@@ -60,7 +63,7 @@
       <article>
         <h2>Formulario de contacto</h2>
 
-        <form action="#" method="post" class="form" id="form">
+        <form action="enviado.html" method="post" class="form" id="form">
           <fieldset>
             <legend>Formulario de Contacto <br></legend>
             <ul>
@@ -69,11 +72,11 @@
                 <label for="name">Nombre(*):</label>
                 <!-- pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" -->
                 <!-- title="Sólo se admiten letras del alfabeto español y espacios en blanco" -->
-                <input type="text" placeholder="Nombre"name="name" id="name" required/>
+                <input type="text" placeholder="Nombre" name="name" id="name" required />
               </li>
               <li>
                 <label for="email">E-mail(*):</label>
-                <input type="email" placeholder="Email" name="email" id="email" required/>
+                <input type="email" placeholder="Email" name="email" id="email" required />
               </li>
               <label for="tlf">Teléfono</label>
               <input type="text" placeholder="Teléfono" name="tlf" id="tlf">
@@ -91,7 +94,8 @@
               </li>
               <li class="textarea">
                 <label for="mensaje">Mensaje</label>
-                <textarea name="mensaje" placeholder="Puedes escribir aquí sugerencias" id="mensaje" cols="30" rows="5"></textarea>
+                <textarea name="mensaje" placeholder="Puedes escribir aquí sugerencias" id="mensaje" cols="30"
+                  rows="5"></textarea>
               </li>
               <li>
                 <input type="checkbox" name="acepto" id="acepto" />

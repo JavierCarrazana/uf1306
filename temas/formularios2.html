@@ -60,45 +60,28 @@
     <section class="tema textos agua justify">
       <header class="portada"
         style="background-image: url('https://cdn.pixabay.com/photo/2016/11/17/23/29/programming-1832991_960_720.png');">
-        <h2>Validación de Formularios web</h2>
+        <h2>Cambiar la contraseña</h2>
       </header>
 
       <article>
-        <h2>Formulario de contacto</h2>
+        <h2>Formulario de cambio de contraseña</h2>
 
         <form action="enviado.html" method="post" class="form" id="form">
           <fieldset>
-            <legend>Formulario de Contacto <br></legend>
+            <legend>Formulario<br></legend>
             <ul>
               <p>Los campos con (*) son obligatorios</p>
-              <li>
-                <label for="name">Nombre(*):</label>
-                <!-- pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" -->
-                <!-- title="Sólo se admiten letras del alfabeto español y espacios en blanco" -->
-                <input type="text" placeholder="Nombre" name="name" id="name" required />
-              </li>
               <li>
                 <label for="email">E-mail(*):</label>
                 <input type="email" placeholder="Email" name="email" id="email" required />
               </li>
-              <label for="tlf">Teléfono</label>
-              <input type="text" placeholder="Teléfono" name="tlf" id="tlf">
               <li>
-                <label for="edad">Edad</label>
-                <input type="number" placeholder="Edad" name="edad" id="edad" />
+                <label for="pass1">Contraseña nueva (*)</label>
+                <input type="password" placeholder="Contraseña nueva" name="pass1" id="pass1">
               </li>
-              <li class="radio">
-                <input type="radio" name="genero" value="h" id="hombre" />
-                <label for="hombre">Hombre</label>
-              </li>
-              <li class="radio">
-                <input type="radio" name="genero" value="m" id="mujer" />
-                <label for="mujer">Mujer</label>
-              </li>
-              <li class="textarea">
-                <label for="mensaje">Mensaje</label>
-                <textarea name="mensaje" placeholder="Puedes escribir aquí sugerencias" id="mensaje" cols="30"
-                  rows="5"></textarea>
+              <li>
+                <label for="pass2">Repetir contraseña (*)</label>
+                <input type="password" placeholder="Repertir contraseña" name="pass2" id="pass2">
               </li>
               <li>
                 <input type="checkbox" name="acepto" id="acepto" />
